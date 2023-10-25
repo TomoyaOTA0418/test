@@ -25,7 +25,8 @@
       on_finish: function() {
         //jsPsych.data.displayData();
         url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
-        jsPsychSheet.uploadData(url, jsPsych.data.get().csv())
+        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
+        jsPsych.data.displayData();
       }
     });
 
