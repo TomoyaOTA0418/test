@@ -14,12 +14,7 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-      alert("jQueryファイルの読み込み完了");
-    });
-</script>
-
+    
   </head>
   <body></body>
   <script>
@@ -29,7 +24,7 @@
       //timeline: timeline,
       //show_progress_bar: true,
       on_finish: function() {
-        jsPsych.data.displayData();
+        //jsPsych.data.displayData();
         url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
         jsPsychSheet.uploadData(url, jsPsych.data.get().csv())
       }
@@ -138,7 +133,7 @@
       show_progress_bar: true,
       on_finish: function () {
         jsPsych.data.displayData();
-        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
+        url = "https://script.google.com/macros/s/AKfycbwVUHAYePjtroHgoG_M6ujWvDRgUI_ygNzCUHDr8JdKkZFXxwTtqTPueyMItqiyDr04/exec";
         jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
     });*/
