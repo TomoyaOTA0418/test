@@ -13,22 +13,27 @@
     <link rel="stylesheet" href="https://brain2ai.github.io/jsPsychSheet/jspsychsheet.css">
 
     <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      alert("jQueryファイルの読み込み完了");
+    });
+</script>
+
   </head>
   <body></body>
   <script>
 
     /* initialize jsPsych */
-    /*var jsPsych = initJsPsych({
+    var jsPsych = initJsPsych({
       //timeline: timeline,
       //show_progress_bar: true,
       on_finish: function() {
-        //jsPsych.data.displayData();
-        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
-        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
         jsPsych.data.displayData();
+        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
+        jsPsychSheet.uploadData(url, jsPsych.data.get().csv())
       }
-    });*/
+    });
 
     /* create timeline */
     var timeline = [];
@@ -128,7 +133,7 @@
     timeline.push(debrief_block);
 
     /* start the experiment */
-    jsPsych.init({
+    /*jsPsych.init({
       timeline: timeline,
       show_progress_bar: true,
       on_finish: function () {
@@ -136,7 +141,8 @@
         url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
         jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
-    });
+    });*/
+    jsPsych.run(timeline);
 
   </script>
 </html>
