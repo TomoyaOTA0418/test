@@ -37,7 +37,7 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png']
+      images: ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png']
     };
     timeline.push(preload);
 
@@ -48,9 +48,10 @@
         <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
         <br>
         <p style="text-align: left">1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
-        <p style="text-align: left">2：その後、テスト用の別の漢字が順に5個表示されます。</p>
-        <p style="text-align: left">&emsp;&emsp;漢字の読みが浮かんだ段階で<strong>J</strong> のキーを押してください。</p>
-        <p style="text-align: left">&emsp;&emsp;もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
+        <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
+        <p style="text-align: left">&emsp;&emsp;漢字の読みが頭に浮かんだ段階で<strong>J</strong>のキーを押してください。</p>
+        <p style="text-align: left">&emsp;&emsp;読みを知らないと判断した場合は<strong>F</strong>のキーを押してください。</p>
+        <p style="text-align: left">&emsp;&emsp;（キーを押しても一定時間経つまで字は消えません）</p>
         <p style="text-align: left">3：これをフォントを変えて3回行います。</p>
         <br>
         <p>キーを押すと始まります。</p>
@@ -80,11 +81,11 @@
 
     /* define trial stimuli array for timeline variables */
     var test_stimuli = [
-      { stimulus: "1.png"}, //'<div style="font-size:60px;">暇</div>'},
-      { stimulus: "2.png"}, //'<div style="font-size:60px;">略</div>'},
-      { stimulus: "3.png"}, //'<div style="font-size:60px;">貯</div>'},
-      { stimulus: "4.png"} //'<div style="font-size:60px;">訴</div>'},
-      //{ stimulus: '<div style="font-size:60px;">推</div>'}
+      { stimulus: "img/1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/2.png"}, //'<div style="font-size:60px;">略</div>'},
+      //{ stimulus: "img/3.png"}, //'<div style="font-size:60px;">貯</div>'},
+      { stimulus: "img/4.png"}, //'<div style="font-size:60px;">訴</div>'},
+      { stimulus: "img/5.png"}//'<div style="font-size:60px;">推</div>'}
       /*{ stimulus: '<div style="font-size:60px;">紹</div>', correct_response: 'j'},
       { stimulus: '<div style="font-size:60px;">換</div>', correct_response: 'j'},
       { stimulus: '<div style="font-size:60px;">販</div>', correct_response: 'j'},
