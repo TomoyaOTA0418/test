@@ -51,7 +51,6 @@
         <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
         <p style="text-align: left">&emsp;&emsp;漢字の読みが頭に浮かんだ段階で<strong>J</strong>のキーを押してください。</p>
         <p style="text-align: left">&emsp;&emsp;読みを知らないと判断した場合は<strong>F</strong>のキーを押してください。</p>
-        //<p style="text-align: left">&emsp;&emsp;（キーを押しても一定時間経つまで字は消えません）</p>
         <p style="text-align: left">3：これをフォントを変えて3回行います。</p>
         <br>
         <p>キーを押すと始まります。</p>
@@ -96,6 +95,8 @@
       { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
     ];
 
+    var gap_time = 0;
+    
     var test = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
@@ -108,13 +109,20 @@
         //correct_response: jsPsych.timelineVariable('correct_response')
       },
       on_finish: function(data){
-        post_trial_gap: (5000-data.rs);
+        gap_time = (5000-data.rs);
       }
+    };
+
+    var interval = {
+      type: jsPsychHtmlKeyboardResponse,
+      //stimulus: ,
+      choices: "NO_KEYS",
+      trial_duration: gap_time
     };
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [test],
+      timeline: [test,interval],
       timeline_variables: test_stimuli,
       //repetitions: 5,
       randomize_order: true
