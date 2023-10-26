@@ -110,11 +110,13 @@
 
     var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "interval",
+      stimulus: " ",
       choices: "NO_KEYS",
       trial_duration: function () {
-        if(last_trial_data[0].response == "j" || last_trial_data[0].response == "f"){
-          return (5000-last_trial_data[0].rt);
+        var rs_last = jsPsych.data.get().last(1).values()[0].response;
+        var rt_last = jsPsych.data.get().last(1).values()[0].rt;
+        if(rs_last == "j" || rs_last == "f"){
+          return (5000-rt_last);
         }
         else{
           return 1000;
