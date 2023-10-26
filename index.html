@@ -23,8 +23,6 @@
 
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
-      //timeline: timeline,
-      //show_progress_bar: true,
       on_finish: function() {
         //jsPsych.data.displayData();
         jsPsych.data.get().localSave('csv', 'data.csv');
@@ -43,23 +41,16 @@
     };
     timeline.push(preload);*/
 
-    /* define welcome message trial */
-    /*var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to the experiment. Press any key to begin."
-    };
-    timeline.push(welcome);*/
-
     /* define instructions trial */
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
-        <p>1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
-        <p>2：その後、テスト用の別の漢字が順に5個表示されます。</p>
-        <p>漢字の読みが浮かんだ段階で<strong>J</strong> のキーを押してください。</p>
-        <p>もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
-        <p>3：これをフォントを変えて3回行います。</p>
+        <p style="text-align: left">1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
+        <p style="text-align: left">2：その後、テスト用の別の漢字が順に5個表示されます。</p>
+        <p style="text-align: left">漢字の読みが浮かんだ段階で<strong>J</strong> のキーを押してください。</p>
+        <p style="text-align: left">もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
+        <pstyle="text-align: left">3：これをフォントを変えて3回行います。</p>
         <p>キーを押すと始まります。</p>
       `,
       post_trial_gap: 300
@@ -82,10 +73,8 @@
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
       post_trial_gap: 1000 
-      /*trial_duration: function(){
-        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-      },*/
     };
+    timeline.push(show);
 
     /* define trial stimuli array for timeline variables */
     var test_stimuli = [
@@ -117,7 +106,7 @@
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [show, test],
+      timeline: [test],
       timeline_variables: test_stimuli,
       //repetitions: 5,
       randomize_order: true
