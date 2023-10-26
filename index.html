@@ -26,10 +26,10 @@
       //timeline: timeline,
       //show_progress_bar: true,
       on_finish: function() {
-        jsPsych.data.displayData();
+        //jsPsych.data.displayData();
         jsPsych.data.get().localSave('csv', 'data.csv');
-        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
-        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
+        //url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
+        //jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
     });
 
@@ -54,8 +54,10 @@
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>これは漢字のゲシュタルト崩壊に関する実験です。</p><p>1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
-        <p>2：その後、テスト用の別の漢字が順に5個表示されます。漢字の読みが浮かんだ段階で<strong>J</strong>のキーを押してください。もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
+        <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
+        <p>1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
+        <p>2：その後、テスト用の別の漢字が順に5個表示されます。</p>
+        <p>漢字の読みが浮かんだ段階で <strong>J</strong> のキーを押してください。もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
         <p>3：これをフォントを変えて3回行います。</p>
         <p>キーを押すと始まります。</p>
       `,
@@ -67,7 +69,8 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "約5秒後に注視用漢字が表示されます。",
       choices: "NO_KEYS",
-      trial_duration: 5000
+      trial_duration: 1000
+      post_trial_gap: 4000 
     };
     timeline.push(message1);
 
@@ -76,7 +79,7 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: '<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 30000 ,
+      trial_duration: 3000 ,//30000
       post_trial_gap: 1000 
       /*trial_duration: function(){
         return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
@@ -101,7 +104,7 @@
 
     var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      //stimulus: '<p style="font-size:60px;">+</p>',
+      stimulus: "",
       choices: "NO_KEYS",
       trial_duration: 1500 ,
       //post_trial_gap: 1000 ,
@@ -134,9 +137,10 @@
 
     var end = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "約5秒後に注視用漢字が表示されます。",
-      choices: "NO_KEYS",
-      trial_duration: 5000
+      stimulus: 
+        <p>実験を終わります。ご協力ありがとうございました。</p>
+        <p>キーを押すとデータをダウンロードします。</p>
+        <p>フォームにアップロードして送信をお願いします。</p>,
     };
     timeline.push(end);
 
