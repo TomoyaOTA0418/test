@@ -37,46 +37,46 @@
     var timeline = [];
 
     /* preload images */
-    var preload = {
+    /*var preload = {
       type: jsPsychPreload,
       images: ['img/blue.png', 'img/orange.png']
     };
-    timeline.push(preload);
+    timeline.push(preload);*/
 
     /* define welcome message trial */
-    var welcome = {
+    /*var welcome = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "Welcome to the experiment. Press any key to begin."
     };
-    timeline.push(welcome);
+    timeline.push(welcome);*/
 
     /* define instructions trial */
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this experiment, a circle will appear in the center 
-        of the screen.</p><p>If the circle is <strong>blue</strong>, 
-        press the letter F on the keyboard as fast as you can.</p>
-        <p>If the circle is <strong>orange</strong>, press the letter J 
-        as fast as you can.</p>
-        <div style='width: 700px;'>
-        <div style='float: left;'><img src='img/blue.png'></img>
-        <p class='small'><strong>Press the F key</strong></p></div>
-        <div style='float: right;'><img src='img/orange.png'></img>
-        <p class='small'><strong>Press the J key</strong></p></div>
-        </div>
-        <p>Press any key to begin.</p>
+        <p>これは漢字のゲシュタルト崩壊に関する実験です。</p><p>1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
+        <p>2：その後、テスト用の別の漢字が順に5個表示されます。漢字の読みが浮かんだ段階で<strong>J</strong>のキーを押してください。もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
+        <p>3：これをフォントを変えて3回行います。</p>
+        <p>キーを押すと始まります。</p>
       `,
-      post_trial_gap: 1000
+      post_trial_gap: 300
     };
     timeline.push(instructions);
+
+    var message1 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "約5秒後に注視用漢字が表示されます。",
+      choices: "NO_KEYS",
+      trial_duration: 5000
+    };
+    timeline.push(message1);
 
     /* define fixation and test trials */
     var show = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<p style="font-size:60px;">式</p>',
+      stimulus: '<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 3000 ,
+      trial_duration: 30000 ,
       post_trial_gap: 1000 
       /*trial_duration: function(){
         return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
@@ -87,19 +87,24 @@
 
     /* define trial stimuli array for timeline variables */
     var test_stimuli = [
-      { stimulus: '<div style="font-size:60px;">あ</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">い</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">う</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">え</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">お</div>', correct_response: 'j'}
+      { stimulus: '<div style="font-size:60px;">暇</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">略</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">貯</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">訴</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">推</div>', correct_response: 'j'}
+      /*{ stimulus: '<div style="font-size:60px;">紹</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">換</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">販</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">憎</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
     ];
 
     var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<p style="font-size:60px;">+</p>',
+      //stimulus: '<p style="font-size:60px;">+</p>',
       choices: "NO_KEYS",
-      trial_duration: 1000 ,
-      post_trial_gap: 1000 ,
+      trial_duration: 1500 ,
+      //post_trial_gap: 1000 ,
       data: {
         task: 'interval'
       }
@@ -122,13 +127,21 @@
     var test_procedure = {
       timeline: [interval, test],
       timeline_variables: test_stimuli,
-      repetitions: 5,
+      //repetitions: 5,
       randomize_order: true
     };
     timeline.push(test_procedure);
 
+    var end = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "約5秒後に注視用漢字が表示されます。",
+      choices: "NO_KEYS",
+      trial_duration: 5000
+    };
+    timeline.push(end);
+
     /* define debrief */
-    var debrief_block = {
+    /*var debrief_block = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: function() {
 
@@ -143,18 +156,9 @@
 
       }
     };
-    timeline.push(debrief_block);
+    timeline.push(debrief_block);*/
 
     /* start the experiment */
-    /*jsPsych.init({
-      timeline: timeline,
-      show_progress_bar: true,
-      on_finish: function () {
-        jsPsych.data.displayData();
-        url = "https://script.google.com/macros/s/AKfycbwVUHAYePjtroHgoG_M6ujWvDRgUI_ygNzCUHDr8JdKkZFXxwTtqTPueyMItqiyDr04/exec";
-        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
-      }
-    });*/
     jsPsych.run(timeline);
 
   </script>
