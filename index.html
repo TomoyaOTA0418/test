@@ -25,7 +25,7 @@
     var jsPsych = initJsPsych({
       on_finish: function() {
         //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv', 'data.csv');
+        //jsPsych.data.get().localSave('csv', 'data.csv');
         url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
         jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
@@ -51,7 +51,7 @@
         <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
         <p style="text-align: left">&emsp;&emsp;漢字の読みが頭に浮かんだ段階で<strong>J</strong>のキーを押してください。</p>
         <p style="text-align: left">&emsp;&emsp;読みを知らないと判断した場合は<strong>F</strong>のキーを押してください。</p>
-        <p style="text-align: left">3：これをフォントを変えて3回行います。</p>
+        <p style="text-align: left">3：これをフォントを変えてn回行います。</p>
         <br>
         <p>キーを押すと始まります。</p>
       `,
@@ -140,8 +140,7 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>実験を終わります。ご協力ありがとうございました。</p>
-        <p>キーを押すとデータをダウンロードします。</p>
-        <p>フォームにアップロードして送信をお願いします。</p>
+        <p>キーを押すとデータを自動でアップロードします。</p>
         `
     };
     timeline.push(end_message);
