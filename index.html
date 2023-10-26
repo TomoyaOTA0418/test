@@ -109,13 +109,17 @@
         //correct_response: jsPsych.timelineVariable('correct_response')
       },
       on_finish: function(data){
-        gap_time = (5000-data.rs);
+        if(data.response == 'j' || data.response == 'f'){
+          gap_time = (5000-data.rs);
+        }else{
+          gap_time = 1000;
+        }
       }
     };
 
     var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      //stimulus: ,
+      stimulus: " ",
       choices: "NO_KEYS",
       trial_duration: gap_time
     };
