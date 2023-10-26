@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+<html lang="ja">
 <html>
   <head>
+    <meta charset="utf-8">
     <title>My experiment</title>
     <script src="https://unpkg.com/jspsych@7.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
@@ -65,45 +67,60 @@
         </div>
         <p>Press any key to begin.</p>
       `,
-      post_trial_gap: 2000
+      post_trial_gap: 1000
     };
     timeline.push(instructions);
 
+    /* define fixation and test trials */
+    var show = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<p style="font-size:60px;">式</p>',
+      choices: "NO_KEYS",
+      trial_duration: 3000 ,
+      post_trial_gap: 1000 
+      /*trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
+      },*/
+    };
+
+    timeline.push(show);
+
     /* define trial stimuli array for timeline variables */
     var test_stimuli = [
-      { stimulus: "img/blue.png",  correct_response: 'f'},
-      { stimulus: "img/orange.png",  correct_response: 'j'}
+      { stimulus: '<div style="font-size:60px;">あ</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">い</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">う</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">え</div>', correct_response: 'j'},
+      { stimulus: '<div style="font-size:60px;">お</div>', correct_response: 'j'}
     ];
 
-    /* define fixation and test trials */
-    var fixation = {
+    var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<div style="font-size:60px;">+</div>',
+      stimulus: '<p style="font-size:60px;">+</p>',
       choices: "NO_KEYS",
-      trial_duration: function(){
-        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-      },
+      trial_duration: 1000 ,
+      post_trial_gap: 1000 ,
       data: {
-        task: 'fixation'
+        task: 'interval'
       }
     };
 
     var test = {
-      type: jsPsychImageKeyboardResponse,
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['f', 'j'],
       data: {
         task: 'response',
-        correct_response: jsPsych.timelineVariable('correct_response')
-      },
+        //correct_response: jsPsych.timelineVariable('correct_response')
+      }/*,
       on_finish: function(data){
         data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
-      }
+      }*/
     };
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [fixation, test],
+      timeline: [interval, test],
       timeline_variables: test_stimuli,
       repetitions: 5,
       randomize_order: true
