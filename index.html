@@ -94,8 +94,6 @@
       { stimulus: '<div style="font-size:60px;">憎</div>', correct_response: 'j'},
       { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
     ];
-
-    var gap_time = 1000;
     
     var test = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
@@ -107,13 +105,6 @@
       data: {
         task: 'response',
         //correct_response: jsPsych.timelineVariable('correct_response')
-      },
-      on_finish: function(data){
-        if(data.response == 'j' || data.response == 'f'){
-          gap_time = (5000-data.rs);
-        }else{
-          gap_time = 1000;
-        }
       }
     };
 
@@ -123,7 +114,9 @@
       choices: "NO_KEYS",
       trial_duration: 1000, 
       on_start: function (trial) {
-        trial.duration = gap_time;
+        if(last_trial_data[0].response == "j" || last_trial_data[0].response == "f"){
+          trial.duration = 5000-last_trial_data[0].rt;
+        }
       }
     };
 
