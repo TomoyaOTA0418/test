@@ -69,7 +69,7 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "約5秒後に注視用漢字が表示されます。",
       choices: "NO_KEYS",
-      trial_duration: 1000
+      trial_duration: 1000,
       post_trial_gap: 4000 
     };
     timeline.push(message1);
@@ -136,7 +136,7 @@
     };
     timeline.push(test_procedure);
 
-    var end = {
+    var end_message = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>実験を終わります。ご協力ありがとうございました。</p>
@@ -144,7 +144,7 @@
         <p>フォームにアップロードして送信をお願いします。</p>
         `
     };
-    timeline.push(end);
+    timeline.push(end_message);
 
     /* define debrief */
     /*var debrief_block = {
