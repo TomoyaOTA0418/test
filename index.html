@@ -121,7 +121,10 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: " ",
       choices: "NO_KEYS",
-      trial_duration: gap_time
+      trial_duration: 1000
+      on_start: function (trial) {
+        trial.duration = gap_time;
+      }
     };
 
     /* define test procedure */
