@@ -102,21 +102,22 @@
       { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
     ];
 
-    var interval = {
+    /*var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "",
+      stimulus: " ",
       choices: "NO_KEYS",
       trial_duration: 1500 ,
       //post_trial_gap: 1000 ,
       data: {
         task: 'interval'
       }
-    };
+    };*/
 
     var test = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['f', 'j'],
+      post_trial_gap: 1500,
       data: {
         task: 'response',
         //correct_response: jsPsych.timelineVariable('correct_response')
@@ -128,7 +129,7 @@
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [interval, test],
+      timeline: test,
       timeline_variables: test_stimuli,
       //repetitions: 5,
       randomize_order: true
@@ -140,7 +141,7 @@
       stimulus: 
         <p>実験を終わります。ご協力ありがとうございました。</p>
         <p>キーを押すとデータをダウンロードします。</p>
-        <p>フォームにアップロードして送信をお願いします。</p>,
+        <p>フォームにアップロードして送信をお願いします。</p>
     };
     timeline.push(end);
 
