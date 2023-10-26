@@ -11,8 +11,8 @@
     <link href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
     
     <!-- jsPsychSheet library -->
-    <script src="https://brain2ai.github.io/jsPsychSheet/jspsychsheet.js"></script>
-    <link rel="stylesheet" href="https://brain2ai.github.io/jsPsychSheet/jspsychsheet.css">
+    <script src="https://TomoyaOTA0418.github.io/test/jspsychsheet.js"></script>
+    <link rel="stylesheet" href="https://TomoyaOTA0418.github.io/test/jspsychsheet.css">
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -26,8 +26,8 @@
       on_finish: function() {
         //jsPsych.data.displayData();
         jsPsych.data.get().localSave('csv', 'data.csv');
-        //url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
-        //jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
+        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
+        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
     });
 
@@ -66,8 +66,8 @@
         <p>その後すぐにテスト用漢字が一定の間隔で4つ続けて表示されます。</p>
       `,
       choices: "NO_KEYS",
-      trial_duration: 2000,
-      post_trial_gap: 3000 
+      trial_duration: 3000,
+      post_trial_gap: 2000 
     };
     timeline.push(message1);
 
@@ -110,12 +110,17 @@
 
     var interval = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: " ",
+      stimulus: "interval",
       choices: "NO_KEYS",
-      trial_duration: 1000, 
-      on_start: function (trial) {
+      trial_duration: function () {
         if(last_trial_data[0].response == "j" || last_trial_data[0].response == "f"){
-          trial.duration = 5000-last_trial_data[0].rt;
+          return (5000-last_trial_data[0].rt);
+        }
+        else{
+          return 1000;
+        },
+        data: {
+          task: 'interval'
         }
       }
     };
