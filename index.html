@@ -57,7 +57,8 @@
         <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
         <p>1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
         <p>2：その後、テスト用の別の漢字が順に5個表示されます。</p>
-        <p>漢字の読みが浮かんだ段階で <strong>J</strong> のキーを押してください。もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
+        <p>漢字の読みが浮かんだ段階で<strong>J</strong> のキーを押してください。</p>
+        <p>もし読みがわからない場合は<strong>F</strong>のキーを押してください。</p>
         <p>3：これをフォントを変えて3回行います。</p>
         <p>キーを押すと始まります。</p>
       `,
@@ -69,8 +70,8 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "約5秒後に注視用漢字が表示されます。",
       choices: "NO_KEYS",
-      trial_duration: 1000,
-      post_trial_gap: 4000 
+      trial_duration: 2000,
+      post_trial_gap: 3000 
     };
     timeline.push(message1);
 
@@ -79,22 +80,20 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: '<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 3000 ,//30000
+      trial_duration: 10000 ,//30000
       post_trial_gap: 1000 
       /*trial_duration: function(){
         return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
       },*/
     };
 
-    timeline.push(show);
-
     /* define trial stimuli array for timeline variables */
     var test_stimuli = [
-      { stimulus: '<div style="font-size:60px;">暇</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">略</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">貯</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">訴</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">推</div>', correct_response: 'j'}
+      { stimulus: '<div style="font-size:60px;">暇</div>'},
+      { stimulus: '<div style="font-size:60px;">略</div>'},
+      { stimulus: '<div style="font-size:60px;">貯</div>'},
+      { stimulus: '<div style="font-size:60px;">訴</div>'},
+      { stimulus: '<div style="font-size:60px;">推</div>'}
       /*{ stimulus: '<div style="font-size:60px;">紹</div>', correct_response: 'j'},
       { stimulus: '<div style="font-size:60px;">換</div>', correct_response: 'j'},
       { stimulus: '<div style="font-size:60px;">販</div>', correct_response: 'j'},
@@ -102,22 +101,11 @@
       { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
     ];
 
-    /*var interval = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: " ",
-      choices: "NO_KEYS",
-      trial_duration: 1500 ,
-      //post_trial_gap: 1000 ,
-      data: {
-        task: 'interval'
-      }
-    };*/
-
     var test = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['f', 'j'],
-      post_trial_gap: 1500,
+      post_trial_gap: 1000,
       data: {
         task: 'response',
         //correct_response: jsPsych.timelineVariable('correct_response')
@@ -129,7 +117,7 @@
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [test],
+      timeline: [show, test],
       timeline_variables: test_stimuli,
       //repetitions: 5,
       randomize_order: true
