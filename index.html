@@ -53,7 +53,7 @@
         <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
         <p style="text-align: left">&emsp;&emsp;漢字の読みが頭に浮かんだ段階で<strong>J</strong>のキーを押してください。</p>
         <p style="text-align: left">&emsp;&emsp;読みを知らないと判断した場合は<strong>F</strong>のキーを押してください。</p>
-        <p style="text-align: left">3：これをフォントを変えてn回行います。</p>
+        <p style="text-align: left">3：これをフォントを変えて3回行います。</p>
         <br>
         <p>キーを押すと始まります。</p>
       `,
@@ -146,14 +146,12 @@
     function getTestStimuli(){
       var ord_font = arrayShuffle([0,1,2]);
       var ord_kanji = arrayShuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
-      var s1 = list_stimuli[ord_font[0]][ord_kanji[0]];
-      var s2 = list_stimuli[ord_font[1]][ord_kanji[5]];
-      var s3 = list_stimuli[ord_font[2]][ord_kanji[10]];
+      var s = [list_stimuli[ord_font[0]][ord_kanji[0]], list_stimuli[ord_font[1]][ord_kanji[5]], list_stimuli[ord_font[2]][ord_kanji[10]], list_stimuli[ord_font[2]][ord_kanji[10]]];
       var ret1 = [list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
       var ret2 = [list_stimuli[ord_font[1]][ord_kanji[6]], list_stimuli[ord_font[1]][ord_kanji[7]], list_stimuli[ord_font[1]][ord_kanji[8]], list_stimuli[ord_font[1]][ord_kanji[9]]];
       var ret3 = [list_stimuli[ord_font[2]][ord_kanji[11]], list_stimuli[ord_font[2]][ord_kanji[12]], list_stimuli[ord_font[2]][ord_kanji[13]], list_stimuli[ord_font[2]][ord_kanji[14]]];
       //console.log(ret1);
-      return ([s1,s2,s3,ret1, ret2, ret3]);
+      return ([s,ret1, ret2, ret3]);
     }
 
     var test_stimuli = getTestStimuli();
@@ -161,7 +159,7 @@
     /* define fixation and test trials */
     var show1 = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
-      stimulus: test_stimuli[0],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
+      stimulus: test_stimuli[0][0],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
       post_trial_gap: 1000 ,
@@ -173,7 +171,7 @@
 
     var show2 = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
-      stimulus: test_stimuli[1],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
+      stimulus: test_stimuli[0][1],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
       post_trial_gap: 1000 ,
@@ -185,7 +183,7 @@
 
     var show3 = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
-      stimulus: test_stimuli[2],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
+      stimulus: test_stimuli[0][2],//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
       post_trial_gap: 1000 ,
@@ -232,7 +230,7 @@
     /* define test procedure */
     var test_procedure1 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[3]
+      timeline_variables: test_stimuli[1]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
@@ -242,7 +240,7 @@
 
     var test_procedure2 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[4]
+      timeline_variables: test_stimuli[2]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
@@ -252,7 +250,7 @@
 
     var test_procedure3 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[5]
+      timeline_variables: test_stimuli[3]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
