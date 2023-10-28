@@ -49,7 +49,7 @@
       stimulus: `
         <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
         <br>
-        <p style="text-align: left">1：1つの漢字が画面に30秒間表示されるので、それが表示されている間注視し続けてください。</p>
+        <p style="text-align: left">1：1つの漢字が画面にk秒間表示されるので、それが表示されている間注視し続けてください。</p>
         <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
         <p style="text-align: left">&emsp;&emsp;漢字の読みが頭に浮かんだ段階で<strong>J</strong>のキーを押してください。</p>
         <p style="text-align: left">&emsp;&emsp;読みを知らないと判断した場合は<strong>F</strong>のキーを押してください。</p>
@@ -86,21 +86,21 @@
 
     /* define trial stimuli array for timeline variables */
     var list_stimuli = [
-      [{ stimulus: "img/mincho/1.png"}, //'<div style="font-size:60px;">暇</div>'},
-      { stimulus: "img/mincho/2.png"}, //'<div style="font-size:60px;">略</div>'},
-      { stimulus: "img/mincho/3.png"},
-      { stimulus: "img/mincho/4.png"},
-      { stimulus: "img/mincho/5.png"},
-      { stimulus: "img/mincho/6.png"},
-      { stimulus: "img/mincho/7.png"},
-      { stimulus: "img/mincho/7.png"},
-      { stimulus: "img/mincho/9.png"},
-      { stimulus: "img/mincho/10.png"},
-      { stimulus: "img/mincho/11.png"},
-      { stimulus: "img/mincho/12.png"},
-      { stimulus: "img/mincho/13.png"},
-      { stimulus: "img/mincho/14.png"},
-      { stimulus: "img/mincho/15.png"}],
+      [{ stimulus: "img/mincho/m1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/mincho/m2.png"}, //'<div style="font-size:60px;">略</div>'},
+      { stimulus: "img/mincho/m3.png"},
+      { stimulus: "img/mincho/m4.png"},
+      { stimulus: "img/mincho/m5.png"},
+      { stimulus: "img/mincho/m6.png"},
+      { stimulus: "img/mincho/m7.png"},
+      { stimulus: "img/mincho/m8.png"},
+      { stimulus: "img/mincho/m9.png"},
+      { stimulus: "img/mincho/m10.png"},
+      { stimulus: "img/mincho/m11.png"},
+      { stimulus: "img/mincho/m12.png"},
+      { stimulus: "img/mincho/m13.png"},
+      { stimulus: "img/mincho/m14.png"},
+      { stimulus: "img/mincho/m15.png"}],
       [{ stimulus: "img/gothic/1.png"}, //'<div style="font-size:60px;">暇</div>'},
       { stimulus: "img/gothic/2.png"}, //'<div style="font-size:60px;">略</div>'},
       { stimulus: "img/gothic/3.png"},
@@ -108,7 +108,7 @@
       { stimulus: "img/gothic/5.png"},
       { stimulus: "img/gothic/6.png"},
       { stimulus: "img/gothic/7.png"},
-      { stimulus: "img/gothic/7.png"},
+      { stimulus: "img/gothic/8.png"},
       { stimulus: "img/gothic/9.png"},
       { stimulus: "img/gothic/10.png"},
       { stimulus: "img/gothic/11.png"},
@@ -116,21 +116,21 @@
       { stimulus: "img/gothic/13.png"},
       { stimulus: "img/gothic/14.png"},
       { stimulus: "img/gothic/15.png"}],
-      [{ stimulus: "img/kyokasho/1.png"}, //'<div style="font-size:60px;">暇</div>'},
-      { stimulus: "img/kyokasho/2.png"}, //'<div style="font-size:60px;">略</div>'},
-      { stimulus: "img/kyokasho/3.png"},
-      { stimulus: "img/kyokasho/4.png"},
-      { stimulus: "img/kyokasho/5.png"},
-      { stimulus: "img/kyokasho/6.png"},
-      { stimulus: "img/kyokasho/7.png"},
-      { stimulus: "img/kyokasho/7.png"},
-      { stimulus: "img/kyokasho/9.png"},
-      { stimulus: "img/kyokasho/10.png"},
-      { stimulus: "img/kyokasho/11.png"},
-      { stimulus: "img/kyokasho/12.png"},
-      { stimulus: "img/kyokasho/13.png"},
-      { stimulus: "img/kyokasho/14.png"},
-      { stimulus: "img/kyokasho/15.png"}]
+      [{ stimulus: "img/kyokasho/k1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/kyokasho/k2.png"}, //'<div style="font-size:60px;">略</div>'},
+      { stimulus: "img/kyokasho/k3.png"},
+      { stimulus: "img/kyokasho/k4.png"},
+      { stimulus: "img/kyokasho/k5.png"},
+      { stimulus: "img/kyokasho/k6.png"},
+      { stimulus: "img/kyokasho/k7.png"},
+      { stimulus: "img/kyokasho/k8.png"},
+      { stimulus: "img/kyokasho/k9.png"},
+      { stimulus: "img/kyokasho/k10.png"},
+      { stimulus: "img/kyokasho/k11.png"},
+      { stimulus: "img/kyokasho/k12.png"},
+      { stimulus: "img/kyokasho/k13.png"},
+      { stimulus: "img/kyokasho/k14.png"},
+      { stimulus: "img/kyokasho/k15.png"}]
     ];
 
     function arrayShuffle(array) {
