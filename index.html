@@ -64,14 +64,25 @@
     var message1 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>約5秒後に注視用漢字が表示されはじめます。</p>
+        <p>約5秒後に最初の注視用漢字が表示されはじめます。</p>
         <p>その後すぐにテスト用漢字が一定の間隔で4つ続けて表示されます。</p>
       `,
       choices: "NO_KEYS",
       trial_duration: 3000,
       post_trial_gap: 2000 
     };
-    timeline.push(message1);
+
+    var message2 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>約5秒後に次の注視用漢字が表示されはじめます。</p>
+        <p>その後すぐにテスト用漢字が一定の間隔で4つ続けて表示されます。</p>
+      `,
+      choices: "NO_KEYS",
+      trial_duration: 3000,
+      post_trial_gap: 2000 
+    };
+    //timeline.push(message1);
 
     /* define trial stimuli array for timeline variables */
     var list_stimuli = [
@@ -135,11 +146,14 @@
     function getTestStimuli(){
       var ord_font = arrayShuffle([0,1,2]);
       var ord_kanji = arrayShuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
-      var ret1 = [list_stimuli[ord_font[0]][ord_kanji[0]], list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
-      var ret2 = [list_stimuli[ord_font[1]][ord_kanji[5]], list_stimuli[ord_font[1]][ord_kanji[6]], list_stimuli[ord_font[1]][ord_kanji[7]], list_stimuli[ord_font[1]][ord_kanji[8]], list_stimuli[ord_font[1]][ord_kanji[9]]];
-      var ret3 = [list_stimuli[ord_font[2]][ord_kanji[10]], list_stimuli[ord_font[2]][ord_kanji[11]], list_stimuli[ord_font[2]][ord_kanji[12]], list_stimuli[ord_font[2]][ord_kanji[13]], list_stimuli[ord_font[2]][ord_kanji[14]]];
-      console.log(ret1);
-      return ([ret1, ret2, ret3]);
+      var s1 = list_stimuli[ord_font[0]][ord_kanji[0]];
+      var s2 = list_stimuli[ord_font[1]][ord_kanji[5]];
+      var s3 = list_stimuli[ord_font[2]][ord_kanji[10]];
+      var ret1 = [list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
+      var ret2 = [list_stimuli[ord_font[1]][ord_kanji[6]], list_stimuli[ord_font[1]][ord_kanji[7]], list_stimuli[ord_font[1]][ord_kanji[8]], list_stimuli[ord_font[1]][ord_kanji[9]]];
+      var ret3 = [list_stimuli[ord_font[2]][ord_kanji[11]], list_stimuli[ord_font[2]][ord_kanji[12]], list_stimuli[ord_font[2]][ord_kanji[13]], list_stimuli[ord_font[2]][ord_kanji[14]]];
+      //console.log(ret1);
+      return ([s1,s2,s3,ret1, ret2, ret3]);
     }
 
     var test_stimuli = getTestStimuli();
@@ -180,8 +194,6 @@
         //correct_response: jsPsych.timelineVariable('correct_response')
       }
     };
-
-    timeline.push(show1);
     
     var test = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
@@ -220,7 +232,7 @@
     /* define test procedure */
     var test_procedure1 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[0]
+      timeline_variables: test_stimuli[3]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
@@ -230,7 +242,7 @@
 
     var test_procedure2 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[1]
+      timeline_variables: test_stimuli[4]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
@@ -240,7 +252,7 @@
 
     var test_procedure1 = {
       timeline: [test,interval],
-      timeline_variables: test_stimuli[2]
+      timeline_variables: test_stimuli[5]
       //repetitions: 3,
       //on_timeline_finish: function() {
        // cnt++;
@@ -248,7 +260,14 @@
       //randomize_order: true
     };
 
+    timeline.push(message1);
+    timeline.push(show1);
     timeline.push(test_procedure1);
+    timeline.push(message2);
+    timeline.push(show2);
+    timeline.push(test_procedure2);
+    timeline.push(show3);
+    timeline.push(test_procedure3);
 
 
     var end_message = {
