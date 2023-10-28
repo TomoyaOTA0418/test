@@ -37,7 +37,9 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png', 'img/5.png']
+      images: ['img/mincho/1.png', 'img/mincho/2.png', 'img/mincho/3.png', 'img/mincho/4.png', 'img/mincho/5.png', 'img/mincho/6.png', 'img/mincho/7.png', 'img/mincho/8.png', 'img/mincho/9.png', 'img/mincho/10.png', 'img/mincho/11.png', 'img/mincho/12.png', 'img/mincho/13.png', 'img/mincho/14.png', 'img/mincho/15.png',
+               'img/gothic/1.png', 'img/gothic/2.png', 'img/gothic/3.png', 'img/gothic/4.png', 'img/gothic/5.png', 'img/gothic/6.png', 'img/gothic/7.png', 'img/gothic/8.png', 'img/gothic/9.png', 'img/gothic/10.png', 'img/gothic/11.png', 'img/gothic/12.png', 'img/gothic/13.png', 'img/gothic/14.png', 'img/gothic/15.png',
+               'img/kyokasho/1.png', 'img/kyokasho/2.png', 'img/kyokasho/3.png', 'img/kyokasho/4.png', 'img/kyokasho/5.png', 'img/kyokasho/6.png', 'img/kyokasho/7.png', 'img/kyokasho/8.png', 'img/kyokasho/9.png', 'img/kyokasho/10.png', 'img/kyokasho/11.png', 'img/kyokasho/12.png', 'img/kyokasho/13.png', 'img/kyokasho/14.png', 'img/kyokasho/15.png']
     };
     timeline.push(preload);
 
@@ -71,29 +73,85 @@
     };
     timeline.push(message1);
 
+    /* define trial stimuli array for timeline variables */
+    var list_stimuli = [
+      [{ stimulus: "img/mincho/1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/mincho/2.png"}, //'<div style="font-size:60px;">略</div>'},
+      { stimulus: "img/mincho/3.png"},
+      { stimulus: "img/mincho/4.png"},
+      { stimulus: "img/mincho/5.png"},
+      { stimulus: "img/mincho/6.png"},
+      { stimulus: "img/mincho/7.png"},
+      { stimulus: "img/mincho/7.png"},
+      { stimulus: "img/mincho/9.png"},
+      { stimulus: "img/mincho/10.png"},
+      { stimulus: "img/mincho/11.png"},
+      { stimulus: "img/mincho/12.png"},
+      { stimulus: "img/mincho/13.png"},
+      { stimulus: "img/mincho/14.png"},
+      { stimulus: "img/mincho/15.png"}],
+      [{ stimulus: "img/gothic/1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/gothic/2.png"}, //'<div style="font-size:60px;">略</div>'},
+      { stimulus: "img/gothic/3.png"},
+      { stimulus: "img/gothic/4.png"},
+      { stimulus: "img/gothic/5.png"},
+      { stimulus: "img/gothic/6.png"},
+      { stimulus: "img/gothic/7.png"},
+      { stimulus: "img/gothic/7.png"},
+      { stimulus: "img/gothic/9.png"},
+      { stimulus: "img/gothic/10.png"},
+      { stimulus: "img/gothic/11.png"},
+      { stimulus: "img/gothic/12.png"},
+      { stimulus: "img/gothic/13.png"},
+      { stimulus: "img/gothic/14.png"},
+      { stimulus: "img/gothic/15.png"}],
+      [{ stimulus: "img/kyokasho/1.png"}, //'<div style="font-size:60px;">暇</div>'},
+      { stimulus: "img/kyokasho/2.png"}, //'<div style="font-size:60px;">略</div>'},
+      { stimulus: "img/kyokasho/3.png"},
+      { stimulus: "img/kyokasho/4.png"},
+      { stimulus: "img/kyokasho/5.png"},
+      { stimulus: "img/kyokasho/6.png"},
+      { stimulus: "img/kyokasho/7.png"},
+      { stimulus: "img/kyokasho/7.png"},
+      { stimulus: "img/kyokasho/9.png"},
+      { stimulus: "img/kyokasho/10.png"},
+      { stimulus: "img/kyokasho/11.png"},
+      { stimulus: "img/kyokasho/12.png"},
+      { stimulus: "img/kyokasho/13.png"},
+      { stimulus: "img/kyokasho/14.png"},
+      { stimulus: "img/kyokasho/15.png"}]
+    ];
+
+    function arrayShuffle(array) {
+      for(let i = (array.length - 1); 0 < i; i--){
+        let r = Math.floor(Math.random() * (i + 1));
+        let tmp = array[i];
+        array[i] = array[r];
+        array[r] = tmp;
+      }
+      return array;
+    }
+
+    function getTestStimuli(){
+      var ord_font = arrayShuffle([0,1,2]);
+      var ord_kanji = arrayShuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
+      var ret1 = [list_stimuli[ord_font[0]][ord_kanji[0]], list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
+      var ret2 = [list_stimuli[ord_font[1]][ord_kanji[5]], list_stimuli[ord_font[1]][ord_kanji[6]], list_stimuli[ord_font[1]][ord_kanji[7]], list_stimuli[ord_font[1]][ord_kanji[8]], list_stimuli[ord_font[1]][ord_kanji[9]]];
+      var ret3 = [list_stimuli[ord_font[2]][ord_kanji[10]], list_stimuli[ord_font[2]][ord_kanji[11]], list_stimuli[ord_font[2]][ord_kanji[12]], list_stimuli[ord_font[2]][ord_kanji[13]], list_stimuli[ord_font[2]][ord_kanji[14]]];
+      return ([ret1, ret2, ret3]);
+    }
+
+    var test_stimuli = getTestStimuli();
+
     /* define fixation and test trials */
     var show = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
-      stimulus: "img/3.png", //'<p style="font-size:60px;">唱</p>',
+      stimulus: jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
       post_trial_gap: 1000 
     };
-    timeline.push(show);
-
-    /* define trial stimuli array for timeline variables */
-    var test_stimuli = [
-      { stimulus: "img/1.png"}, //'<div style="font-size:60px;">暇</div>'},
-      { stimulus: "img/2.png"}, //'<div style="font-size:60px;">略</div>'},
-      //{ stimulus: "img/3.png"}, //'<div style="font-size:60px;">貯</div>'},
-      { stimulus: "img/4.png"}, //'<div style="font-size:60px;">訴</div>'},
-      { stimulus: "img/5.png"}//'<div style="font-size:60px;">推</div>'}
-      /*{ stimulus: '<div style="font-size:60px;">紹</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">換</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">販</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">憎</div>', correct_response: 'j'},
-      { stimulus: '<div style="font-size:60px;">晴</div>', correct_response: 'j'}*/
-    ];
+    //timeline.push(show);
     
     var test = {
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
@@ -127,12 +185,19 @@
       }
     };
 
+    var cnt = 0;
+
     /* define test procedure */
     var test_procedure = {
-      timeline: [test,interval],
-      timeline_variables: test_stimuli,
-      //repetitions: 5,
-      randomize_order: true
+      timeline: [show,test,interval],
+      timeline_variables: function(){
+        return test_stimuli[cnt];
+      },
+      repetitions: 3,
+      on_timeline_finish: function() {
+        cnt++;
+      }
+      //randomize_order: true
     };
     timeline.push(test_procedure);
 
@@ -144,24 +209,6 @@
         `
     };
     timeline.push(end_message);
-
-    /* define debrief */
-    /*var debrief_block = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: function() {
-
-        var trials = jsPsych.data.get().filter({task: 'response'});
-        var correct_trials = trials.filter({correct: true});
-        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = Math.round(correct_trials.select('rt').mean());
-
-        return `<p>You responded correctly on ${accuracy}% of the trials.</p>
-          <p>Your average response time was ${rt}ms.</p>
-          <p>Press any key to complete the experiment. Thank you!</p>`;
-
-      }
-    };
-    timeline.push(debrief_block);*/
 
     /* start the experiment */
     jsPsych.run(timeline);
