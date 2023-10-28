@@ -152,7 +152,11 @@
       stimulus: jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
       trial_duration: 10000 ,//30000
-      post_trial_gap: 1000 
+      post_trial_gap: 1000 ,
+      data: {
+        task: 'show'
+        //correct_response: jsPsych.timelineVariable('correct_response')
+      }
     };
     //timeline.push(show);
     
@@ -164,7 +168,7 @@
       response_ends_trial: true,
       //post_trial_gap: 1000,
       data: {
-        task: 'response',
+        task: 'response'
         //correct_response: jsPsych.timelineVariable('correct_response')
       }
     };
@@ -194,7 +198,8 @@
     var test_procedure = {
       timeline: [show,test,interval,test,interval,test,interval,test,interval],
       timeline_variables: function(){
-        return test_stimuli[0];
+        var ts = test_stimuli[cnt];
+        return ts;
       },
       repetitions: 3,
       on_timeline_finish: function() {
