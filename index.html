@@ -68,8 +68,8 @@
         <p>その後すぐにテスト用漢字が一定の間隔で4つ続けて表示されます。</p>
       `,
       choices: "NO_KEYS",
-      trial_duration: 3000,
-      post_trial_gap: 2000 
+      trial_duration: 4000,
+      post_trial_gap: 1000 
     };
 
     var message2 = {
@@ -79,8 +79,8 @@
         <p>その後すぐにテスト用漢字が一定の間隔で4つ続けて表示されます。</p>
       `,
       choices: "NO_KEYS",
-      trial_duration: 3000,
-      post_trial_gap: 2000 
+      trial_duration: 4000,
+      post_trial_gap: 1000 
     };
     //timeline.push(message1);
 
@@ -197,7 +197,7 @@
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['f', 'j'],
-      trial_duration: 4000,
+      trial_duration: 3000,
       response_ends_trial: true,
       //post_trial_gap: 1000,
       data: {
@@ -214,7 +214,7 @@
         var rs_last = jsPsych.data.get().last(1).values()[0].response;
         var rt_last = jsPsych.data.get().last(1).values()[0].rt;
         if(rs_last == "j" || rs_last == "f"){
-          return (5000-rt_last);
+          return (4000-rt_last);
         }
         else{
           return 1000;
@@ -264,6 +264,7 @@
     timeline.push(message2);
     timeline.push(show2);
     timeline.push(test_procedure2);
+    timeline.push(message2);
     timeline.push(show3);
     timeline.push(test_procedure3);
 
