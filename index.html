@@ -138,10 +138,13 @@
       var ret1 = [list_stimuli[ord_font[0]][ord_kanji[0]], list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
       var ret2 = [list_stimuli[ord_font[1]][ord_kanji[5]], list_stimuli[ord_font[1]][ord_kanji[6]], list_stimuli[ord_font[1]][ord_kanji[7]], list_stimuli[ord_font[1]][ord_kanji[8]], list_stimuli[ord_font[1]][ord_kanji[9]]];
       var ret3 = [list_stimuli[ord_font[2]][ord_kanji[10]], list_stimuli[ord_font[2]][ord_kanji[11]], list_stimuli[ord_font[2]][ord_kanji[12]], list_stimuli[ord_font[2]][ord_kanji[13]], list_stimuli[ord_font[2]][ord_kanji[14]]];
+      console.log(ret1);
       return ([ret1, ret2, ret3]);
     }
 
     var test_stimuli = getTestStimuli();
+    console.log(test_stimuli);
+    console.log(test_stimuli[0]);
 
     /* define fixation and test trials */
     var show = {
@@ -189,9 +192,9 @@
 
     /* define test procedure */
     var test_procedure = {
-      timeline: [show,test,interval],
+      timeline: [show,test,interval,test,interval,test,interval,test,interval],
       timeline_variables: function(){
-        return list_stimuli[cnt];
+        return test_stimuli[0];
       },
       repetitions: 3,
       on_timeline_finish: function() {
