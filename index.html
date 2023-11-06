@@ -25,9 +25,9 @@
     var jsPsych = initJsPsych({
       on_finish: function() {
         //jsPsych.data.displayData();
-        //jsPsych.data.get().localSave('csv', 'data.csv');
-        url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
-        jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
+        jsPsych.data.get().localSave('csv', 'data_gestaltzerfall.csv');
+        //url = "https://script.google.com/macros/s/AKfycbzFcNvspC0ii_mrKWKoFRnuvsQl9mK6pHDuMCmRgjKy7Fqw6AhW1M31o_IF9O--9A138g/exec";
+        //jsPsychSheet.uploadData(url, jsPsych.data.get().csv());
       }
     });
 
@@ -144,7 +144,14 @@
     }
 
     function getTestStimuli(){
-      var ord_font = arrayShuffle([0,1,2]);
+      var ord_tmp = arrayShuffle([0,1,2]);
+      var ord_font = [0,1,2];
+      if(ord_tmp[0] == 1){
+        ord_font = [1,2,0];
+      }
+      else if(ord_tmp[0] == 2){
+        ord_font = [2,0,1];
+      }
       var ord_kanji = arrayShuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
       var s = [list_stimuli[ord_font[0]][ord_kanji[0]], list_stimuli[ord_font[1]][ord_kanji[5]], list_stimuli[ord_font[2]][ord_kanji[10]], list_stimuli[ord_font[2]][ord_kanji[10]]];
       var ret1 = [list_stimuli[ord_font[0]][ord_kanji[1]], list_stimuli[ord_font[0]][ord_kanji[2]], list_stimuli[ord_font[0]][ord_kanji[3]], list_stimuli[ord_font[0]][ord_kanji[4]]];
@@ -161,7 +168,7 @@
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
       stimulus: test_stimuli[0][0].stimulus,//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 10000 ,//30000
+      trial_duration: 30000 ,//30000
       post_trial_gap: 1000 ,
       data: {
         task: 'show'
@@ -173,7 +180,7 @@
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
       stimulus: test_stimuli[0][1].stimulus,//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 10000 ,//30000
+      trial_duration: 30000 ,//30000
       post_trial_gap: 1000 ,
       data: {
         task: 'show'
@@ -185,7 +192,7 @@
       type: jsPsychImageKeyboardResponse, //jsPsychHtmlKeyboardResponse,
       stimulus: test_stimuli[0][2].stimulus,//jsPsych.timelineVariable('stimulus'),//"img/3.png", //'<p style="font-size:60px;">唱</p>',
       choices: "NO_KEYS",
-      trial_duration: 10000 ,//30000
+      trial_duration: 30000 ,//30000
       post_trial_gap: 1000 ,
       data: {
         task: 'show'
