@@ -48,6 +48,7 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>これは漢字のゲシュタルト崩壊に関する実験です。</p>
+        <p>注意：必ずパソコンを使って参加してください。</p>
         <br>
         <p style="text-align: left">1：1つの漢字が画面にk秒間表示されるので、それが表示されている間注視し続けてください。</p>
         <p style="text-align: left">2：その後、テスト用の別の漢字が順に4個表示されます。</p>
@@ -57,7 +58,10 @@
         <br>
         <p>キーを押すと始まります。</p>
       `,
-      post_trial_gap: 300
+      post_trial_gap: 300,
+      data: {
+        task: 'instructions'
+      }
     };
     timeline.push(instructions);
 
@@ -69,7 +73,10 @@
       `,
       choices: "NO_KEYS",
       trial_duration: 4000,
-      post_trial_gap: 1000 
+      post_trial_gap: 1000,
+      data: {
+        task: 'message1'
+      } 
     };
 
     var message2 = {
@@ -80,7 +87,10 @@
       `,
       choices: "NO_KEYS",
       trial_duration: 4000,
-      post_trial_gap: 1000 
+      post_trial_gap: 1000,
+      data: {
+        task: 'message2'
+      } 
     };
     //timeline.push(message1);
 
@@ -280,8 +290,8 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>実験を終わります。ご協力ありがとうございました。</p>
-        <p>キーを押すとデータを自動でアップロードします。</p>
-        `
+        <p>キーを押すとデータをPCにダウンロードします。</p>
+        <p>フォームに戻り、データをアップロードしてください。</p>
     };
     timeline.push(end_message);
 
